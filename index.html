@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hisab Pro</title>
+  <meta name="theme-color" content="#0b0f14">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="brand">
+        <div class="logo"><img src="./icons/icon-192.png" style="width:38px;height:38px;border-radius:8px"></div>
+        <div><h1>Hisab Pro</h1><div class="small" style="color:var(--muted)">Professional • Offline PWA</div></div>
+      </div>
+      <div class="header-right">
+        <button id="export-json" class="small-btn">Export</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Home page -->
+      <div id="home" class="page">
+        <div class="card balance">
+          <div class="label">মোট ব্যালান্স</div>
+          <div class="value" id="bal-val">0</div>
+          <div class="stats">
+            <div class="stat"><div class="small">ইনকাম</div><div class="big" id="inc-val">0</div></div>
+            <div class="stat"><div class="small">খরচ</div><div class="big" id="exp-val">0</div></div>
+          </div>
+          <div class="searchbar"><input id="search" placeholder="Search name or category"></div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Recent Transactions</div>
+          <div id="txn-wrap" class="txn-list"></div>
+        </div>
+      </div>
+
+      <!-- Transactions page -->
+      <div id="transactions" class="page" style="display:none">
+        <div class="card"><div style="font-weight:700">All Transactions</div></div>
+        <div id="txn-wrap-trans" style="display:none"></div>
+      </div>
+
+      <!-- Settings page -->
+      <div id="settings" class="page" style="display:none">
+        <div class="card"><div style="font-weight:700">Settings</div><div id="settings-wrap"></div></div>
+      </div>
+    </div>
+
+    <button id="fab" class="fab">+</button>
+
+    <div class="bottom-nav">
+      <div class="nav-item active" data-view="home"><div>🏠</div><div>Home</div></div>
+      <div class="nav-item" data-view="transactions"><div>📜</div><div>Transactions</div></div>
+      <div class="nav-item" data-view="settings"><div>⚙️</div><div>Settings</div></div>
+    </div>
+
+    <!-- Sheet modal -->
+    <div id="sheet" class="modal">
+      <div class="sheet">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:700">New Transaction</div>
+          <button id="sheet-close" class="small-btn">Close</button>
+        </div>
+        <form id="sheet-form">
+          <input type="hidden" id="txn-id">
+          <div class="form-row"><select id="txn-type"><option value="out">Out (Expense)</option><option value="in">In (Income)</option></select><input id="txn-date" type="date"></div>
+          <div class="form-row"><input id="txn-amount" type="number" placeholder="Amount"></div>
+          <div class="form-row"><input id="txn-name" placeholder="Title"></div>
+          <div class="form-row"><input id="txn-cat" placeholder="Category"></div>
+          <div class="form-row"><input id="txn-note" placeholder="Notes (optional)"></div>
+          <div style="display:flex;gap:8px;margin-top:10px"><button id="submit-sheet" class="small-btn" type="submit">Add</button><button id="delete-txn" type="button" class="small-btn">Delete</button></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
